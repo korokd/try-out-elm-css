@@ -1,6 +1,7 @@
 module Main exposing (main)
 
 import Browser exposing (Document)
+import Css.Reset
 import Types exposing (Flags, Model, Msg)
 
 
@@ -22,7 +23,10 @@ init flags =
 view : Model -> Document Msg
 view model =
     { title = "Gnomicidio"
-    , body = []
+    , body =
+        [ Css.Reset.meyerV2
+        , Css.Reset.borderBoxV201408
+        ]
     }
 
 
