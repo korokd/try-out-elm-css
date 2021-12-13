@@ -2,6 +2,7 @@ module Main exposing (main)
 
 import Browser exposing (Document)
 import Css exposing (Px)
+import Css.Media
 import Css.Reset
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attributes
@@ -114,7 +115,30 @@ makeNavItem item =
 
 bodyMain : Html Msg
 bodyMain =
-    Html.main_ []
+    let
+        bodyHeight =
+            Css.calc (Css.vh 100) Css.minus headerHeight
+    in
+    Html.main_
+        [ Attributes.css
+            [ Css.height bodyHeight
+            , Css.Media.withMediaQuery [ "screen and (min-width: 1441px)" ]
+                [ Css.margin2 (Css.px 0) Css.auto
+                , Css.maxWidth (Css.px 1200)
+                ]
+            , Css.Media.withMediaQuery [ "screen and (min-width: 1025px)" ]
+                [ Css.margin2 (Css.px 0) Css.auto
+                , Css.maxWidth (Css.px 900)
+                ]
+            , Css.Media.withMediaQuery [ "screen and (min-width: 769px)" ]
+                [ Css.margin2 (Css.px 0) Css.auto
+                , Css.maxWidth (Css.px 700)
+                ]
+            , Css.Media.withMediaQuery [ "screen and (max-width: 768px)" ]
+                [ Css.margin2 (Css.px 0) (Css.em 1)
+                ]
+            ]
+        ]
         []
 
 
