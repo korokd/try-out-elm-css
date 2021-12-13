@@ -62,10 +62,13 @@ header : Html Msg
 header =
     Html.header
         [ Attributes.css
-            [ Css.backgroundColor (Css.rgb 0 0 0)
             [ Css.height headerHeight
             , Css.width (Css.pct 100)
+            , Css.backgroundColor (Css.rgb 0 0 0)
             , Css.padding2 (Css.px 0) (Css.em 1)
+            , Css.displayFlex
+            , Css.justifyContent Css.spaceBetween
+            , Css.alignItems Css.center
             ]
         ]
         [ Html.img
@@ -75,7 +78,38 @@ header =
                 ]
             ]
             []
+        , makeNav navItems
         ]
+
+
+navItems : List String
+navItems =
+    [ "Regras"
+    ]
+
+
+makeNav : List String -> Html Msg
+makeNav items =
+    Html.nav
+        [ Attributes.css
+            [ Css.color (Css.rgb 255 255 255)
+            ]
+        ]
+        [ Html.ul []
+            [ Html.li [] <|
+                List.map makeNavItem items
+            ]
+        ]
+
+
+makeNavItem : String -> Html Msg
+makeNavItem item =
+    Html.a
+        [ Attributes.css
+            [ Css.cursor Css.pointer
+            ]
+        ]
+        [ Html.text item ]
 
 
 bodyMain : Html Msg
