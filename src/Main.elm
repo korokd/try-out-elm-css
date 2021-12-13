@@ -1,6 +1,7 @@
 module Main exposing (main)
 
 import Browser exposing (Document)
+import Css exposing (Px)
 import Css.Reset
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attributes
@@ -52,10 +53,29 @@ bodyWithResets =
         ]
 
 
+headerHeight : Px
+headerHeight =
+    Css.px 60
+
+
 header : Html Msg
 header =
-    Html.header []
-        []
+    Html.header
+        [ Attributes.css
+            [ Css.backgroundColor (Css.rgb 0 0 0)
+            [ Css.height headerHeight
+            , Css.width (Css.pct 100)
+            , Css.padding2 (Css.px 0) (Css.em 1)
+            ]
+        ]
+        [ Html.img
+            [ Attributes.src "/static/gnomicidio-logo-hand-drawn.jpeg"
+            , Attributes.css
+                [ Css.height headerHeight
+                ]
+            ]
+            []
+        ]
 
 
 bodyMain : Html Msg
